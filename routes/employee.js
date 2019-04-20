@@ -56,7 +56,7 @@ router.get('/get-emp-details/:id', checkAuth, (req, res) => {
     })
 })
 
-router.put('update-emp-detials/:id', (req, res) => {
+router.put('update-emp-detials/', (req, res) => {
 
     let options = req.body
 
