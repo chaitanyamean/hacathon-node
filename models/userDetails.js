@@ -27,6 +27,9 @@ let empDetails = new Schema({
     },
     empDetailsId: {
         type: String
+    },
+    userId: {
+        type: String
     }
 
 })
