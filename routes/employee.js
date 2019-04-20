@@ -56,7 +56,7 @@ router.get('/get-emp-details/:id', checkAuth, (req, res) => {
     })
 })
 
-router.post('/update-emp-details', (req, res) => {
+router.put('/update-emp-details', (req, res) => {
 
     let options = req.body
     console.log('options', options);
