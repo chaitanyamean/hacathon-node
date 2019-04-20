@@ -15,10 +15,10 @@ let questions = new Schema({
         type: String
     },
     answers:{
-        type: String
+        type: Array
     },
     correctAnswer: {
-        type: Array
+        type: String
     }
 })
 
