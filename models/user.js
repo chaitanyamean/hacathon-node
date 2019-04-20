@@ -21,6 +21,9 @@ let user = new Schema({
     },
     mobileNumber: {
         type: Number
+    },
+    userId: {
+        type: String
     }
 })
 

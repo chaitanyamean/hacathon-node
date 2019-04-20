@@ -43,7 +43,7 @@ app.use('/user', userRoutes)
 
 app.listen(port, () => {
  
-    let db = mongoose.connect(dburl, ({ useNewUrlParser: true }))
+    let db = mongoose.connect(dburl, ({ useNewUrlParser: true,uri_decode_auth: true }))
     console.log('Port is running in ' + port)
     console.log(dburl);
 })

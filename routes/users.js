@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const shortid = require('shortid')
 const router = express.Router()
 
 const model = require('../models/user')
@@ -34,7 +34,8 @@ router.post('/signup', (req, res) => {
                     password: hash,
                     isUser: req.body.isUser,
                     name: req.body.name,
-                    mobileNumber: req.body.mobileNumber
+                    mobileNumber: req.body.mobileNumber,
+                    userId: shortid.generate()
                 })
                 console.log('userDetails', userDetails)
 
