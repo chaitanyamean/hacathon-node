@@ -7,7 +7,7 @@ const path = require("path");
 const appConfig = require('./config/appconfig')
 const userRoutes = require('./routes/users')
 const empRoutes = require('./routes/employee')
-
+const commonRoutes = require('./routes/common')
 
 
 // External Module
@@ -44,6 +44,7 @@ const dburl = process.env.MONGODB_URL || appConfig.db.url
                         
 app.use('/user', userRoutes)
 app.use('/employee', empRoutes)
+app.use('/common', commonRoutes)
 
 
 app.listen(port, () => {
