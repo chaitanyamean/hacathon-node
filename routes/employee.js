@@ -39,7 +39,7 @@ router.post('/emp-details', checkAuth, (req, res) => {
 })
 
 
-router.get('/get-emp-details', checkAuth, (req, res) => {
+router.get('/get-emp-details/:id', checkAuth, (req, res) => {
 
     console.log('params', req.params.id)
     UserDetailsModel.findOne({
