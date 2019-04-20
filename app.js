@@ -6,6 +6,8 @@ const path = require("path");
 
 const appConfig = require('./config/appconfig')
 const userRoutes = require('./routes/users')
+const empRoutes = require('./routes/employee')
+
 
 
 // External Module
@@ -40,9 +42,10 @@ const dburl = process.env.MONGODB_URL || appConfig.db.url
    
                         
 app.use('/user', userRoutes)
+app.use('/employee', empRoutes)
+
 
 app.listen(port, () => {
- 
     let db = mongoose.connect(dburl, ({ useNewUrlParser: true,uri_decode_auth: true }))
     console.log('Port is running in ' + port)
     console.log(dburl);
