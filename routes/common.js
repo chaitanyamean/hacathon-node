@@ -10,12 +10,15 @@ const UserModel = mongoose.model('User')
 const jobtags = require('../models/tag')
 const AddJobsModel = mongoose.model('Jobtags')
 
+const checkAuth = require('../middlewares/check-auth')
+
+
 const response = require('../libs/responseLibs')
 
 
-router.get('/getAllUsers', (req, res) => {
+router.get('/getAllUsers',checkAuth, (req, res) => {
     let resObj
-    UserModel.find().then(result => {
+    UserModel.find({isUser: true}).then(result => {
 
         resObj = response.generate(false, 'All users', 200, result)
         res.send(resObj)
@@ -49,7 +52,7 @@ router.post('/addJobTags', (req, res) => {
     })
 })
 
-router.get('/getAllTags', (req, res) => {
+router.get('/getAllTags', checkAuth,(req, res) => {
 
     AddJobsModel.find().then(result => {  
     let resObj
