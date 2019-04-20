@@ -5,7 +5,7 @@ appConfig.allowedCorsOrigin = '*';
 appConfig.env = 'dev';
 appConfig.db = {
 
-url: 'mongodb://127.0.0.1:27017/hackui'
+url: 'mongodb://127.0.0.1:27017/hacknode'
 }
 appConfig.apiVersion = 'api/v1'
 
