@@ -4,7 +4,7 @@ const fs = require('fs') // Internal Module
 const os = require('os')
 const path = require("path");
 
-const appConfig = require('./config/appConfig')
+const appConfig = require('./config/appconfig')
 const userRoutes = require('./routes/users')
 
 
