@@ -19,6 +19,8 @@ const app = express();
 const port = process.env.PORT || 3000
 const dburl = process.env.MONGODB_URL || appConfig.db.url
 // const dburl = appConfig.db.url
+//  const port = 3000
+
 
 // body parser for post methods
  app.use(bodyparser.json())
