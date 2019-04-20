@@ -7,6 +7,10 @@ const router = express.Router()
 const model = require('../models/user')
 const UserModel = mongoose.model('User')
 
+const questions = require('../models/questions')
+const QuestionModel = mongoose.model('Questions')
+
+
 const jobtags = require('../models/tag')
 const AddJobsModel = mongoose.model('Jobtags')
 
@@ -65,5 +69,30 @@ router.get('/getAllTags', checkAuth,(req, res) => {
 
     })
 })
+
+router.post('/add-questions', (req, res) => {
+
+    let questions = new QuestionModel({
+        question: req.body.question,
+        skill: req.body.skill,
+        skillId: req.body.skillId,
+        answers: req.body.answers,
+        correctAnswer: req.body.correctAnswer
+    })
+
+
+    questions.save((err, result) => {
+        let resObj
+        if (result) {
+            resObj = response.generate(false, 'questons addded', 200, result)
+            res.send(resObj)
+        } else {
+            resObj = response.generate(true, 'Unable to add', 404, null)
+            res.send(resObj)
+        }
+    })
+
+})
+
 
 module.exports = router;
