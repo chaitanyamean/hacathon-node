@@ -29,6 +29,24 @@ router.get('/getAllUsers',checkAuth, (req, res) => {
     })
 })
 
+router.post('/deleteuser/:id', (req, res) => {
+    let resObj
+    UserModel.find({userId: req.params.id}).then(result => {
+
+        resObj = response.generate(false, 'deleted', 200, result)
+        res.send(resObj)
+    })
+})
+
+router.get('/deleteempdetails/:id', (req, res) => {
+    let resObj
+    UserModel.find({userId: req.params.id}).then(result => {
+
+        resObj = response.generate(false, 'deleted', 200, result)
+        res.send(resObj)
+    })
+})
+
 router.post('/addJobTags', (req, res) => {
 
     let jobTags = new AddJobsModel({
