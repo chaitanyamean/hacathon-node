@@ -14,7 +14,7 @@ const express = require('express')
 const bodyparser = require('body-parser')
 
 const app = express();
-
+const port = process.env.PORT || 3000
 
 // body parser for post methods
  app.use(bodyparser.json())
@@ -40,10 +40,10 @@ const app = express();
                         
 app.use('/user', userRoutes)
 
-app.listen(appConfig.port, () => {
+app.listen(port, () => {
  
     let db = mongoose.connect(appConfig.db.url, ({ useNewUrlParser: true }))
-    console.log('Port is running in ' + appConfig.port)
+    console.log('Port is running in ' + port)
     console.log(appConfig.db.url);
 })
 
