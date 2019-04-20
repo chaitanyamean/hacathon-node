@@ -40,7 +40,7 @@ router.delete('/deleteuser/:id', (req, res) => {
 
 router.delete('/deleteempdetails/:id', (req, res) => {
     let resObj
-    UserModel.findOneAndDelete({userId: req.params.id}).then(result => {
+    UserModel.findByIdAndDelete({userId: req.params.id}).then(result => {
 
         resObj = response.generate(false, 'deleted', 200, result)
         res.send(resObj)
