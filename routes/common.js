@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.get('/getAllUsers', (req, res) => {
     let resObj
-    UserModel.find({isUser: true}).then(result => {
+    UserModel.find().then(result => {
 
         resObj = response.generate(false, 'All users', 200, result)
         res.send(resObj)
