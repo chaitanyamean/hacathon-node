@@ -59,7 +59,7 @@ router.get('/get-emp-details/:id', checkAuth, (req, res) => {
 router.put('update-emp-detials', (req, res) => {
 
     let options = req.body
-
+    console.log('options', options);
     UserDetailsModel.findOneAndUpdate({userId: req.body.userId}, options).then(result => {
         let resObj
         if (result) {
