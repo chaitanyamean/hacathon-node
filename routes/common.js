@@ -14,6 +14,8 @@ const QuestionModel = mongoose.model('Questions')
 const jobtags = require('../models/tag')
 const AddJobsModel = mongoose.model('Jobtags')
 
+const model = require('../models/userDetails')
+const UserDetailsModel = mongoose.model('EmployeeDetails')
 
 const score = require('../models/score')
 const AddScore = mongoose.model('Score')
@@ -28,8 +30,34 @@ router.get('/getAllUsers',checkAuth, (req, res) => {
     let resObj
     UserModel.find({isUser: true}).then(result => {
 
-        resObj = response.generate(false, 'All users', 200, result)
+        // console.log(result)
+        // resObj = response.generate(false, 'All users', 200, result)
+        // res.send(resObj)
+
+        let responseArray = [];
+
+        for(let item of result.data) {
+
+            UserDetailsModel.findOne({
+                userId: item.userId
+            }).then(result => {
+                // let resObj
+                if (result) {
+                    let sampleObj = {
+                        userDetails: item,
+                        profileDetails: result                        
+                    }
+                    responseArray.push(sampleObj);
+                } else {
+                    resObj = response.generate(true, 'Unable to get Employee Details', 404, null)
+                    res.send(resObj)
+                }
+            })
+        }
+
+        resObj = response.generate(false, 'All users', 200, responseArray)
         res.send(resObj)
+
     })
 })
 
@@ -142,21 +170,13 @@ router.post('/save-score', checkAuth, (req, res) => {
         skill: req.body.skill,
         skillId: req.body.skillId,
         userId: req.body.userId,
-
+        scoreId: shortid.generate()
     })
     // console.log('Request', req);
     addScore.save((err, result) => {
     let resObj
-
         if(err) {
 
-            let resObj = {
-                message: 'Unable to add Jobs',
-                status: 404,
-                error: null,
-                token: null,
-                result: null
-            }
             resObj = response.generate(true, 'Unable to add score', 404, result)
             res.send(resObj)
         } 
