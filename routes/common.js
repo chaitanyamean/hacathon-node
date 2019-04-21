@@ -36,7 +36,7 @@ router.get('/getAllUsers',checkAuth, (req, res) => {
 
         let responseArray = [];
 
-        for(let item of result.data) {
+        for(let item of result) {
 
             UserDetailsModel.findOne({
                 userId: item.userId
