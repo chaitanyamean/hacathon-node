@@ -122,7 +122,7 @@ router.post('/add-questions', (req, res) => {
 })
 
 
-router.get('/get-questions/:id', (req, res) => {
+router.get('/get-questions/:id', checkAuth, (req, res) => {
     let resObj
     QuestionModel.find({skillId: req.params.id}).then(result => {
         console.log('result')
