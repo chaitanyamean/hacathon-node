@@ -47,6 +47,15 @@ router.delete('/deleteempdetails/:id', (req, res) => {
     })
 })
 
+router.delete('/delete-tags/:id', (req, res) => {
+    let resObj
+    AddJobsModel.findOneAndDelete({itemId: req.params.id}).then(result => {
+
+        resObj = response.generate(false, 'deleted tags', 200, result)
+        res.send(resObj)
+    })
+})
+
 router.post('/addJobTags', (req, res) => {
 
     let jobTags = new AddJobsModel({
@@ -113,9 +122,9 @@ router.post('/add-questions', (req, res) => {
 })
 
 
-router.get('/get-questions', (req, res) => {
+router.get('/get-questions/:id', (req, res) => {
     let resObj
-    QuestionModel.find().then(result => {
+    QuestionModel.find({userId: req.params.id}).then(result => {
 
         resObj = response.generate(false, 'All Questions', 200, result)
         res.send(resObj)
