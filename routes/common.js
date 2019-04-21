@@ -14,7 +14,7 @@ const QuestionModel = mongoose.model('Questions')
 const jobtags = require('../models/tag')
 const AddJobsModel = mongoose.model('Jobtags')
 
-const userModel = require('../models/userDetails')
+const model = require('../models/userDetails')
 const UserDetailsModel = mongoose.model('EmployeeDetails')
 
 const score = require('../models/score')
@@ -28,44 +28,11 @@ const response = require('../libs/responseLibs')
 
 router.get('/getAllUsers',checkAuth, (req, res) => {
     let resObj
-    let responseArray = [];
     UserModel.find({isUser: true}).then(result => {
 
-        // console.log(result)
-        // resObj = response.generate(false, 'All users', 200, result)
-        // res.send(resObj)
-
-
-        for(i=0;i<=result.length;i++) {
-            console.log(item)
-            UserDetailsModel.findOne({
-                userId: item.userId
-            }).then(result => {
-                // let resObj
-
-                // console.log('RESULT*************************', result);
-                if (result) {
-                    let sampleObj = {
-                        userDetails: item,
-                        profileDetails: result                        
-                    }
-                // console.log('sampleObj*************************', sampleObj);
-                    responseArray.push(sampleObj);
-                 console.log('responseArray*************************', responseArray);
-                 
-                } else {
-                    // resObj = response.generate(true, 'Unable to get Employee Details', 404, null)
-                    // res.send(resObj)
-                }
-                res.send(responseArray)
-            })
-            // console.log(responseArray)
-
-            // res.send(responseArray)
-        }
-
-        // resObj = response.generate(false, 'All users', 200, responseArray)
-
+        console.log(result)
+        resObj = response.generate(false, 'All users', 200, result)
+        res.send(resObj)
     })
 })
 
