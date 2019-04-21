@@ -49,17 +49,18 @@ router.get('/getAllUsers',checkAuth, (req, res) => {
                         userDetails: item,
                         profileDetails: result                        
                     }
-                console.log('RESULT*************************', sampleObj);
+                console.log('sampleObj*************************', sampleObj);
                     responseArray.push(sampleObj);
                 } else {
                     // resObj = response.generate(true, 'Unable to get Employee Details', 404, null)
                     // res.send(resObj)
                 }
             })
+            console.log(responseArray)
         }
+        res.send(responseArray)
 
         // resObj = response.generate(false, 'All users', 200, responseArray)
-        res.send(responseArray)
 
     })
 })
