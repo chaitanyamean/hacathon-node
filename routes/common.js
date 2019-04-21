@@ -14,6 +14,10 @@ const QuestionModel = mongoose.model('Questions')
 const jobtags = require('../models/tag')
 const AddJobsModel = mongoose.model('Jobtags')
 
+
+const score = require('../models/score')
+const AddScore = mongoose.model('Score')
+
 const checkAuth = require('../middlewares/check-auth')
 
 
@@ -129,6 +133,38 @@ router.get('/get-questions/:id', checkAuth, (req, res) => {
         resObj = response.generate(false, 'All Questions', 200, result)
         res.send(resObj)
     })
+})
+
+router.post('/save-score', checkAuth, (req, res) => {
+
+    let addScore = new AddScore({
+        score: req.body.score,
+        skill: req.body.skill,
+        skillId: req.body.skillId,
+        userId: req.body.userId,
+
+    })
+    // console.log('Request', req);
+    addScore.save((err, result) => {
+    let resObj
+
+        if(err) {
+
+            let resObj = {
+                message: 'Unable to add Jobs',
+                status: 404,
+                error: null,
+                token: null,
+                result: null
+            }
+            resObj = response.generate(true, 'Unable to add score', 404, result)
+            res.send(resObj)
+        } 
+        resObj = response.generate(false, 'Added score', 200, result)
+        res.send(resObj)
+    })
+
+
 })
 
 module.exports = router;
