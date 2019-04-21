@@ -14,7 +14,7 @@ const QuestionModel = mongoose.model('Questions')
 const jobtags = require('../models/tag')
 const AddJobsModel = mongoose.model('Jobtags')
 
-const model = require('../models/userDetails')
+const userModel = require('../models/userDetails')
 const UserDetailsModel = mongoose.model('EmployeeDetails')
 
 const score = require('../models/score')
