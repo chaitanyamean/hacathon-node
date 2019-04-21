@@ -15,20 +15,15 @@ router.get('/', (req, res) => {
 
 // localhost:3000/user/signup
 router.post('/signup', (req, res) => {
-    console.log('req', req.body);
-
 
     UserModel.findOne({
         email: req.body.email
     }).then(result => {
 
-        console.log('RESULT', result);
-
         if (!result) {
 
             bcryptjs.hash(req.body.password, 10).then(hash => {
 
-                // console.log('HASH', hash)
                 let userDetails = new UserModel({
                     email: req.body.email,
                     password: hash,
@@ -37,18 +32,15 @@ router.post('/signup', (req, res) => {
                     mobileNumber: req.body.mobileNumber,
                     userId: shortid.generate()
                 })
-                console.log('userDetails', userDetails)
 
                 userDetails.save((err, result) => {
                     if (err) {
-                        // res.send(err)
                         res.status(500).json({
                             message: 'Unable to create user',
                             result: null,
                             error: err
                         })
                     } else {
-                        //res.send(result)
                         res.status(200).json({
                             message: 'User Created Successfully',
                             result: result,
@@ -64,7 +56,6 @@ router.post('/signup', (req, res) => {
                 })
             })
         } else {
-            // res.send('User already exist')
             res.status(500).json({
                 message: 'User Already exist',
                 result: null,

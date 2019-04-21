@@ -72,7 +72,6 @@ router.post('/addJobTags', (req, res) => {
         itemId: shortid.generate(),
         tags: req.body.tags
     })
-    // console.log('Request', req);
     jobTags.save((err, result) => {
     let resObj
 
@@ -150,7 +149,6 @@ router.post('/save-score', checkAuth, (req, res) => {
         userId: req.body.userId,
         scoreId: shortid.generate()
     })
-    // console.log('Request', req);
     addScore.save((err, result) => {
     let resObj
         if(err) {
