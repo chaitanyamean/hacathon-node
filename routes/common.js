@@ -58,9 +58,10 @@ router.get('/getAllUsers',checkAuth, (req, res) => {
                     // res.send(resObj)
                 }
             })
-            console.log(responseArray)
+            // console.log(responseArray)
+
+            res.send(responseArray)
         }
-        res.send(responseArray)
 
         // resObj = response.generate(false, 'All users', 200, responseArray)
 
