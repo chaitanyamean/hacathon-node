@@ -122,10 +122,10 @@ router.post('/add-questions', (req, res) => {
 })
 
 
-router.get('/get-questions', (req, res) => {
+router.get('/get-questions/:id', (req, res) => {
     let resObj
-    QuestionModel.find().then(result => {
-        console.log('result', result);
+    QuestionModel.find({skillId: req.params.id}).then(result => {
+        console.log('result')
         resObj = response.generate(false, 'All Questions', 200, result)
         res.send(resObj)
     })
