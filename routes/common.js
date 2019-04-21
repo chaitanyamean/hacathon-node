@@ -30,9 +30,12 @@ router.get('/getAllUsers',checkAuth, (req, res) => {
     let resObj
     UserModel.find({isUser: true}).then(result => {
 
-        console.log(result)
-        resObj = response.generate(false, 'All users', 200, result)
-        res.send(resObj)
+        if(result) {
+
+            console.log(result)
+            resObj = response.generate(false, 'All users', 200, result)
+            res.send(resObj)
+        }
     })
 })
 
