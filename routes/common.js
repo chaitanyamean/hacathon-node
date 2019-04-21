@@ -28,13 +28,13 @@ const response = require('../libs/responseLibs')
 
 router.get('/getAllUsers',checkAuth, (req, res) => {
     let resObj
+    let responseArray = [];
     UserModel.find({isUser: true}).then(result => {
 
         // console.log(result)
         // resObj = response.generate(false, 'All users', 200, result)
         // res.send(resObj)
 
-        let responseArray = [];
 
         for(let item of result) {
             console.log(item)
@@ -52,14 +52,14 @@ router.get('/getAllUsers',checkAuth, (req, res) => {
                 console.log('RESULT*************************', sampleObj);
                     responseArray.push(sampleObj);
                 } else {
-                    resObj = response.generate(true, 'Unable to get Employee Details', 404, null)
-                    res.send(resObj)
+                    // resObj = response.generate(true, 'Unable to get Employee Details', 404, null)
+                    // res.send(resObj)
                 }
             })
         }
 
-        resObj = response.generate(false, 'All users', 200, responseArray)
-        res.send(resObj)
+        // resObj = response.generate(false, 'All users', 200, responseArray)
+        res.send(responseArray)
 
     })
 })
