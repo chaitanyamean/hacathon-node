@@ -124,7 +124,7 @@ router.post('/add-questions', (req, res) => {
 
 router.get('/get-questions/:id', (req, res) => {
     let resObj
-    QuestionModel.find({userId: req.params.id}).then(result => {
+    QuestionModel.find({skillId: req.params.id}).then(result => {
 
         resObj = response.generate(false, 'All Questions', 200, result)
         res.send(resObj)
