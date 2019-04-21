@@ -161,8 +161,14 @@ router.post('/save-score', checkAuth, (req, res) => {
         resObj = response.generate(false, 'Added score', 200, result)
         res.send(resObj)
     })
-
-
 })
 
+router.get('/get-score/:id', checkAuth, (req, res) => {
+    let resObj
+    AddScore.find({userId: req.params.id}).then(result => {
+        console.log('result')
+        resObj = response.generate(false, 'User Score', 200, result)
+        res.send(resObj)
+    })
+})
 module.exports = router;
